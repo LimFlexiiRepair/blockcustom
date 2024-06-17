@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block Customizer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .sliders {
+      margin-bottom: 20px;
+    }
+
+    .sliders label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    .sliders input[type="range"],
+    .sliders input[type="color"],
+    .sliders input[type="text"],
+    .sliders select {
+      width: 100%;
+    }
+
+    .block {
+      width: 200px;
+      height: 200px;
+      line-height: 200px;
+      background-color: #ffffff;
+      color: #000000;
+      text-align: center;
+      border: 2px solid #000000;
+      border-radius: 0;
+      font-size: 16px;
+      padding: 0;
+      box-shadow: none;
+      transition: all 0.3s;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Block Customizer</h1>
+    <div class="sliders">
+      <label for="border-radius">Border Radius: <span id="border-radius-value">0</span>px</label>
+      <input type="range" id="border-radius" min="0" max="100" value="0">
+
+      <label for="border-width">Border Width: <span id="border-width-value">2</span>px</label>
+      <input type="range" id="border-width" min="0" max="20" value="2">
+
+      <label for="border-color">Border Color:</label>
+      <input type="color" id="border-color" value="#000000">
+
+      <label for="color">Text Color:</label>
+      <input type="color" id="color" value="#000000">
+
+      <label for="background-color">Background Color:</label>
+      <input type="color" id="background-color" value="#ffffff">
+
+      <label for="font-size">Font Size: <span id="font-size-value">16</span>px</label>
+      <input type="range" id="font-size" min="10" max="50" value="16">
+
+      <label for="text">Text:</label>
+      <input type="text" id="text" value="Hello, World!">
+
+      <label for="text-align">Text Alignment:</label>
+      <select id="text-align">
+        <option value="center">Center</option>
+        <option value="left">Left</option>
+        <option value="right">Right</option>
+        <option value="justify">Justify</option>
+      </select>
+
+      <label for="box-shadow">Box Shadow:</label>
+      <input type="text" id="box-shadow" placeholder="e.g., 5px 5px 10px rgba(0, 0, 0, 0.5)">
+
+      <label for="padding">Padding: <span id="padding-value">0</span>px</label>
+      <input type="range" id="padding" min="0" max="50" value="0">
+
+      <label for="width">Width: <span id="width-value">200</span>px</label>
+      <input type="range" id="width" min="50" max="500" value="200">
+
+      <label for="height">Height: <span id="height-value">200</span>px</label>
+      <input type="range" id="height" min="50" max="500" value="200">
+    </div>
+    <div class="block" id="block">Hello, World!</div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const block = document.getElementById('block');
+
+      const borderRadiusInput = document.getElementById('border-radius');
+      const borderRadiusValue = document.getElementById('border-radius-value');
+      borderRadiusInput.addEventListener('input', () => {
+        block.style.borderRadius = `${borderRadiusInput.value}px`;
+        borderRadiusValue.textContent = borderRadiusInput.value;
+      });
+
+      const borderWidthInput = document.getElementById('border-width');
+      const borderWidthValue = document.getElementById('border-width-value');
+      borderWidthInput.addEventListener('input', () => {
+        block.style.borderWidth = `${borderWidthInput.value}px`;
+        borderWidthValue.textContent = borderWidthInput.value;
+      });
+
+      const borderColorInput = document.getElementById('border-color');
+      borderColorInput.addEventListener('input', () => {
+        block.style.borderColor = borderColorInput.value;
+      });
+
+      const colorInput = document.getElementById('color');
+      colorInput.addEventListener('input', () => {
+        block.style.color = colorInput.value;
+      });
+
+      const backgroundColorInput = document.getElementById('background-color');
+      backgroundColorInput.addEventListener('input', () => {
+        block.style.backgroundColor = backgroundColorInput.value;
+      });
+
+      const fontSizeInput = document.getElementById('font-size');
+      const fontSizeValue = document.getElementById('font-size-value');
+      fontSizeInput.addEventListener('input', () => {
+        block.style.fontSize = `${fontSizeInput.value}px`;
+        fontSizeValue.textContent = fontSizeInput.value;
+      });
+
+      const textInput = document.getElementById('text');
+      textInput.addEventListener('input', () => {
+        block.textContent = textInput.value;
+      });
+
+      const textAlignInput = document.getElementById('text-align');
+      textAlignInput.addEventListener('change', () => {
+        block.style.textAlign = textAlignInput.value;
+      });
+
+      const boxShadowInput = document.getElementById('box-shadow');
+      boxShadowInput.addEventListener('input', () => {
+        block.style.boxShadow = boxShadowInput.value;
+      });
+
+      const paddingInput = document.getElementById('padding');
+      const paddingValue = document.getElementById('padding-value');
+      paddingInput.addEventListener('input', () => {
+        block.style.padding = `${paddingInput.value}px`;
+        paddingValue.textContent = paddingInput.value;
+      });
+
+      const widthInput = document.getElementById('width');
+      const widthValue = document.getElementById('width-value');
+      widthInput.addEventListener('input', () => {
+        block.style.width = `${widthInput.value}px`;
+        widthValue.textContent = widthInput.value;
+      });
+
+      const heightInput = document.getElementById('height');
+      const heightValue = document.getElementById('height-value');
+      heightInput.addEventListener('input', () => {
+        block.style.height = `${heightInput.value}px`;
+        heightValue.textContent = heightInput.value;
+      });
+    });
+  </script>
+</body>
+
+</html>
